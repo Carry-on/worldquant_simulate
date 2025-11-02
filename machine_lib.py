@@ -22,8 +22,8 @@ ops_set = basic_ops + ts_ops
 
 def login():
     
-    username = "2379259142@qq.com"
-    password = "20140504Xiao."
+    username = ""
+    password = ""
  
     # Create a session to persistently store the headers
     s = requests.Session()
@@ -797,4 +797,5 @@ def group_factory(op, field, region):
             alpha = "%s(%s,densify(%s))"%(op, field, group)
             output.append(alpha)
         
+
     return output
