@@ -28,6 +28,33 @@ class Alpha(Base):
     universe = Column(String(50), nullable=False)
     delay = Column(Integer, nullable=False)
     decay = Column(Numeric(10, 2), default=0.00)
+    neutralization = Column(String(128), nullable=False)
+    truncation = Column(Numeric(5, 2), default=0.10)
+    pasteurization = Column(Enum('ON', 'OFF'), default='ON')
+    unit_handling = Column(String(20), default='VERIFY')
+    nan_handling = Column(Enum('ON', 'OFF'), default='ON')
+    language = Column(String(20), default='FASTEXPR')
+    max_trade = Column(Enum('ON', 'OFF'), default='OFF')
+    visualization = Column(Boolean, default=False)
+    regular_expression = Column(String(2000), nullable=False)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+    wq_id = Column(String(128))
+    alpha = Column(String(128))
+    author = Column(String(20))
+
+
+# t_alpha_retry 表模型
+class AlphaRetry(Base):
+    __tablename__ = 't_alpha_retry'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    type = Column(String(50), nullable=False)
+    instrument_type = Column(String(50), nullable=False)
+    region = Column(String(10), nullable=False)
+    universe = Column(String(50), nullable=False)
+    delay = Column(Integer, nullable=False)
+    decay = Column(Numeric(10, 2), default=0.00)
     neutralization = Column(String(20), nullable=False)
     truncation = Column(Numeric(5, 2), default=0.10)
     pasteurization = Column(Enum('ON', 'OFF'), default='ON')
@@ -41,7 +68,17 @@ class Alpha(Base):
     updated_at = Column(DateTime)
     wq_id = Column(String(128))
     alpha = Column(String(128))
-
+    author = Column(String(20))
+    pnl = Column(Integer)
+    bookSize = Column(Integer)
+    longCount = Column(Integer)
+    shortCount = Column(Integer)
+    turnover = Column(Float)
+    returns = Column(Float)
+    drawdown = Column(Float)
+    margin = Column(Float)
+    sharpe = Column(Float)
+    fitness = Column(Float)
 
 # t_checks 表模型
 class Check(Base):
@@ -115,3 +152,4 @@ class YearlyStat(Base):
     margin = Column(Float)
     fitness = Column(Float)
     stage = Column(String(64))
+
