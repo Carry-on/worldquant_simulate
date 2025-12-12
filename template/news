@@ -1,0 +1,26 @@
+1.新闻情感惯性因子
+经济学逻辑：持续且一致的情感倾向比单日强度更重要
+行为金融：基于投资者关注度持续假说
+5日与10日窗口：短期情感与中期持续性结合
+news85,
+ts_mean({sentiment_score}, 5) * ts_corr({sentiment_score}, ts_delay({sentiment_score}, 1), 10)
+
+({news_count} - ts_mean({news_count}, 20)) / ts_std_dev({news_count}, 20)
+
+ts_rank(group_std_dev({topic_relevance}, industry), 5) * -1
+
+ts_std_dev({sentiment_score}, 5) / abs(ts_mean({sentiment_score}, 5))
+
+ts_rank({sentiment_score}, 1) - ts_rank(ts_delta({close}, 1), 1)
+
+ts_std_dev({sentiment_score}, 20) / ts_mean(abs({sentiment_score}), 20)
+
+
+
+ts_corr({news_sentiment}, {social_sentiment}, 10) * ts_mean({news_sentiment}, 10)
+
+exp(-{days_since_topic_emerged} / 10) * {topic_sentiment}
+
+group_mean({news_sentiment}, industry) - {own_news_sentiment}
+
+ts_sum({sentiment} * {source_credibility}, 3) / ts_sum({source_credibility}, 3)

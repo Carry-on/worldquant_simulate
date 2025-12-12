@@ -1,0 +1,19 @@
+ts_rank(ts_delta({roe}, 8) / ts_std_dev({roe}, 8), 4) - group_neutralize(industry)
+
+({operating_cf} / {market_cap}) - ({net_income} / {market_cap}) * 4
+
+ts_rank({roic} - {wacc}, 60) * sign(ts_delta({capex} / {assets}, 4))
+
+ts_delta({equity} / {total_assets}, 4) - ts_delta({debt} / {total_assets}, 4)
+
+ts_mean(ts_delta({revenue}, 4), 3) / ts_std_dev(ts_delta({revenue}, 4), 12)
+
+({gross_margin} - ts_mean({gross_margin}, 16)) / ts_std_dev({gross_margin}, 16)
+
+ts_rank({revenue_growth}, 8) - ts_rank({rd_expense} / {revenue}, 8)
+
+ts_delta({inventory_turnover}, 4) + ts_delta({receivables_turnover}, 4)
+
+({dividend_yield} * {fcf_cover}) - group_neutralize(sector)
+
+ts_delta({intangibles} / {total_assets}, 8) * ts_rank({roa}, 8)

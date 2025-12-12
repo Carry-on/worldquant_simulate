@@ -1,0 +1,20 @@
+ts_mean({model1_score}, 5) * ts_std_dev({model1_score, model2_score, model3_score}, 5)
+
+ts_autocorr({actual_return} - {predicted_return}, 10)
+
+{prediction} * {confidence_score} - group_neutralize(market)
+
+ts_delta({prediction}, 1) / ts_std_dev({prediction}, 20)
+
+ts_corr({daily_model}, ts_mean({weekly_model}, 5), 10)
+
+ts_skewness({prediction}, 20) * sign(ts_mean({prediction}, 20))
+
+({actual} - {predicted}) - ts_mean({actual} - {predicted}, 60)
+
+ts_sum({prediction} * {model_weight}, 3) / ts_sum({model_weight}, 3)
+
+ts_sum(sign(ts_delta({prediction}, 1)), 5) / 5
+
+{prediction} / log({model_feature_count} + 1)
+

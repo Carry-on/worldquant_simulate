@@ -1,0 +1,20 @@
+ts_rank(ts_delta({eps_estimate_mean}, 20), 60) * sign({estimate_dispersion})
+
+ts_delta({estimate_std_dev} / abs({eps_estimate_mean}), 10) * -1
+
+({long_term_growth} - ts_mean({long_term_growth}, 24)) / ts_std_dev({long_term_growth}, 24)
+
+ts_rank({target_price} / {close}, 5) - ts_rank({recommendation_mean}, 5)
+
+ts_sum(sign(ts_delta({eps_estimate}, 1)), 10) / {analyst_coverage}
+
+({target_price} / {close} - 1) - group_mean({target_price} / {close} - 1, sector)
+
+ts_corr({actual_eps} - {estimate_mean}, ts_delay({actual_eps} - {estimate_mean}, 4), 16)
+
+ts_rank({estimate_accuracy}, 24) * ts_rank({timeliness}, 24)
+
+ts_rank(ts_delta({eps_estimate_mean}, 20), 10) - ts_rank(ts_delta({close}, 20), 10)
+
+ts_corr(ts_delta({eps_estimate}, 1), ts_delta({revenue_estimate}, 1), 10)
+

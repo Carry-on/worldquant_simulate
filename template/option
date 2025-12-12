@@ -1,0 +1,20 @@
+({iv_25delta_put} - {iv_25delta_call}) / {iv_atm} - group_neutralize(market)
+
+({iv_30day} / {iv_90day}) - ts_mean({iv_30day} / {iv_90day}, 20)
+
+ts_rank({call_volume} / ({call_volume} + {put_volume}), 5) - 0.5
+
+group_std_dev({iv_30day}, industry) / group_mean({iv_30day}, industry)
+
+({iv_30day} - ts_realized_vol({close}, 30)) / {iv_30day}
+
+ts_delta({gamma_exposure} / {volume}, 5) * -1
+
+({call_price} + {put_price}) / (2 * {strike} * exp({risk_free_rate} * {t}))
+
+(2 * {iv_atm} - {iv_25delta_call} - {iv_25delta_put}) / {iv_atm}
+
+normalize(1 / (1 + exp(-({implied_move} / {realized_move} - 1) * 10)))
+
+ts_delta({skew_30day} - {skew_90day}, 5)
+

@@ -1,0 +1,23 @@
+ts_rank(ts_delta({close}, 60) / ts_std_dev({volume}, 60), 120) - group_neutralize(market)
+
+ts_rank(ts_delta({close}, 5) / sqrt({volume}), 20) * sign(ts_delta({volume}, 20))
+
+(ts_mean({high} - {low}, 20) / ts_mean({close}, 20)) - group_neutralize(sector)
+
+ts_rank({close} - ts_max({high}, 10), 5) * ts_rank({volume} / ts_mean({volume}, 20), 5)
+
+ts_rank({close} - ts_mean({close}, 1, 5), 10) - ts_rank({close} - ts_mean({close}, 6, 10), 10)
+
+ts_delta(ts_corr({close}, {volume}, 20), 5) * -1
+
+(ts_mean(abs({open} / ts_delay({close}, 1) - 1), 5) - ts_mean(abs({close} / {open} - 1), 5)) * -1
+
+ts_rank(({high} - {low}) / ts_mean({high} - {low}, 60), 10) * -1
+
+ts_skewness({volume}, 20) / ts_std_dev({volume}, 20)
+
+(abs(ts_delta({close}, 20)) / ts_sum(abs(ts_delta({close}, 1)), 20)) - group_neutralize(market)
+
+
+
+

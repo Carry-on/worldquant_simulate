@@ -1,0 +1,19 @@
+ts_rank(ts_mean({social_sentiment}, 3), 10) * ts_rank({user_engagement}, 10)
+
+quantile({sentiment_score}, 0.9) - quantile({sentiment_score}, 0.1)
+
+group_std_dev({sentiment_score}, market) - group_mean({sentiment_score}, market)
+
+{institutional_sentiment} - {retail_sentiment}
+
+1 / (1 + exp(-ts_delta({sentiment_score}, 5) * 10))
+
+ts_delta(ts_corr({platform1_sentiment}, {platform2_sentiment}, 10), 5)
+
+ts_mean({sentiment_score}, 10) * (1 - ts_autocorr({sentiment_score}, 10))
+
+ts_corr({sentiment_score}, {volume}, 5) * sign({sentiment_score})
+
+{sentiment_score} - group_mean({sentiment_score}, sector, day_of_week)
+
+{sentiment_score} / ts_std_dev({sentiment_score}, 20)

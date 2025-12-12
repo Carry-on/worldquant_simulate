@@ -1,0 +1,30 @@
+1. 差分/变动类算子（diff_op)：`ts_delta`, `ts_av_diff`, `ts_min_diff`, `ts_min_max_diff`
+2. 归一化/排序类算子 (norm_op)：`ts_rank`, `ts_zscore`, `ts_median`, `ts_std_dev`, `ts_skewness`
+3. 窗口聚合类算子 (agg_op)：`ts_sum`, `ts_decay_linear`, `ts_decay_exp_window`
+4. 位置/索引类算子 (pos_op)：`ts_arg_min`, `ts_arg_max`, `ts_delay`
+5. 特殊算子 (special_op)：`ts_count_nans`, `ts_entropy`, `inst_tvr`, `ts_min_max_cps`
+
+
+模板1 动量加速（差分→差分）
+"{diff_op1}({diff_op2}({x}, {d1}), {d2})"
+经济含义：捕捉趋势的加速或减速
+算子：ts_delta、ts_av_diff、ts_min_diff、ts_min_max_diff
+
+模板2 标准化动量（标准化→差分）
+"{norm_op}({diff_op}({x}, {d1}), {d2})"
+经济含义：对动量信号做排序或标准化
+标准化算子：ts_rank、ts_zscore、ts_median、ts_std_dev、ts_skewness
+差分算子：ts_delta、ts_av_diff、ts_min_diff、ts_min_max_diff
+
+模板3 聚合信号（聚合→标准化）
+"{agg_op}({norm_op}({x}, {d1}), {d2})"
+经济含义：对标准化信号做平滑或时间衰减
+聚合算子：ts_sum、ts_decay_linear、ts_decay_exp_window
+标准化算子：ts_rank、ts_zscore、ts_median、ts_std_dev、ts_skewness、ts_entropy
+
+
+模板4 位置信号（位置→聚合/标准化）
+"{pos_op}({inner_op}({x}, {d1}), {d2})"
+经济含义：找出极端值相对于聚合信号出现的位置
+位置算子：ts_arg_min、ts_arg_max、ts_delay
+内部算子：ts_rank、ts_sum、ts_zscore、ts_std_dev
